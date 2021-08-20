@@ -1,0 +1,40 @@
+{
+  "name": "M5_Buildweek_Netflix_BE",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon -e js -r dotenv/config ./src/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VardanGalstyan/M5_Buildweek_Netflix.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VardanGalstyan/M5_Buildweek_Netflix/issues"
+  },
+  "homepage": "https://github.com/VardanGalstyan/M5_Buildweek_Netflix#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "errors": "^0.3.0",
+    "express": "^4.17.1",
+    "express-json": "^1.0.0",
+    "express-list-endpoints": "^6.0.0",
+    "express-validator": "^6.12.1",
+    "fs-extra": "^10.0.0",
+    "http": "0.0.1-security",
+    "http-errors": "^1.8.0",
+    "multer": "^1.4.3",
+    "start": "^5.1.0",
+    "uniqid": "^5.4.0",
+    "uniquid": "^1.1.4"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.12"
+  }
+}
