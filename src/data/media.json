@@ -4,7 +4,7 @@
     "Title": "The Lord of the Rings: The Fellowship of the Ring",
     "Year": "2001",
     "Type": "movie",
-    "Poster": "http://localhost:3002/sktwi1cr2ksk7rcm0.png",
+    "Poster": "https://res.cloudinary.com/di8iypeft/image/upload/v1629584714/M5_Netflix_BE/yup2wmf2u8chi0tjw8gw.png",
     "createdAt": "2021-08-20T10:32:24.215Z",
     "reviews": [
       {
@@ -22,6 +22,6 @@
         "createdAt": "2021-08-21T16:27:23.596Z"
       }
     ],
-    "updatedAt": "2021-08-20T14:37:49.717Z"
+    "updatedAt": "2021-08-21T22:25:14.749Z"
   }
 ]

@@ -1,16 +1,17 @@
 import { Router } from "express";
-import { readMedia, saveFile, writeMedia } from "../../utilities/fs-utilities.js";
+import { readMedia, writeMedia } from "../../utilities/fs-utilities.js";
 import { mediaReviewValidator, mediaValidator } from "../../validation.js";
 import { validationResult } from "express-validator";
-import { extname } from "path";
 import { generatePdfStream } from "../../utilities/pdf.js";
 import { pipeline } from "stream";
 import createHttpError from "http-errors";
 import uniqid from 'uniqid'
 import multer from "multer"
+import { mediaStorage } from '../../utilities/fileupload.js'
 
 
 const mediaRouter = Router()
+
 
 mediaRouter.get("/", async (req, res, next) => {
 
@@ -96,17 +97,14 @@ mediaRouter.put("/:id", async (req, res, next) => {
     }
 })
 
-mediaRouter.put("/:id/poster", multer().single('poster'), async (req, res, next) => {
+mediaRouter.put("/:id/poster", multer({ storage: mediaStorage }).single('poster'), async (req, res, next) => {
 
     try {
-        const extension = extname(req.file.originalname)
-        const fileName = `${req.params.id}${extension}`
         const mediaPosts = await readMedia()
         const mediaPost = mediaPosts.find(post => post.imdbID === req.params.id)
         const errorList = validationResult(req)
         if (mediaPost) {
-            await saveFile(fileName, req.file.buffer)
-            const posterPath = `http://localhost:${process.env.PORT}/${fileName}`
+            const posterPath = req.file.path
             const updatedMediaPost = { imdbID: req.params.id, ...mediaPost, Poster: posterPath, updatedAt: new Date().toISOString() }
             const filteredMediaPost = mediaPosts.filter(posts => posts.imdbID !== req.params.id)
             filteredMediaPost.push(updatedMediaPost)
