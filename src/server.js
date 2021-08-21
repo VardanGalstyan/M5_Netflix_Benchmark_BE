@@ -22,7 +22,7 @@ const corsOption = {
 
 const publicFolderPath = join(process.cwd(), "public")
 server.use(express.static(publicFolderPath)) // this is to access the public folder
-server.use(cors(corsOption))
+server.use(cors())
 server.use(express.json())
 
 server.use("/media", mediaRouter)
