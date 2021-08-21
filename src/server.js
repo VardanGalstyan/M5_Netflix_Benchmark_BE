@@ -12,7 +12,7 @@ const whiteList = [process.env.FE_DEV_URL, process.env.FE_PROD_URL]
 
 const corsOption = {
     origin: function (origin, callback) {
-        if (whiteList.indexOf(origin) !== -1) {
+        if (!origin || whiteList.indexOf(origin) !== -1) {
             callback(null, true)
         } else {
             callback(new Error("Origin not allowed!"))
@@ -22,7 +22,7 @@ const corsOption = {
 
 const publicFolderPath = join(process.cwd(), "public")
 server.use(express.static(publicFolderPath)) // this is to access the public folder
-server.use(cors())
+server.use(cors(corsOption))
 server.use(express.json())
 
 server.use("/media", mediaRouter)
