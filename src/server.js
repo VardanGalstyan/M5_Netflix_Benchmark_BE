@@ -16,7 +16,6 @@ const corsOption = {
             callback(null, true)
         } else {
             callback(new Error("Origin not allowed!"))
-
         }
     }
 }

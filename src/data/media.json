@@ -1,1 +1,27 @@
-[{"imdbID":"sktwi1cr2ksk7rcm0","Title":"The Lord of the Rings: The Fellowship of the Ring","Year":"2001","Type":"movie","Poster":"http://localhost:3002/sktwi1cr2ksk7rcm0.png","createdAt":"2021-08-20T10:32:24.215Z","reviews":[],"updatedAt":"2021-08-20T14:37:49.717Z"}]
+[
+  {
+    "imdbID": "sktwi1cr2ksk7rcm0",
+    "Title": "The Lord of the Rings: The Fellowship of the Ring",
+    "Year": "2001",
+    "Type": "movie",
+    "Poster": "http://localhost:3002/sktwi1cr2ksk7rcm0.png",
+    "createdAt": "2021-08-20T10:32:24.215Z",
+    "reviews": [
+      {
+        "_id": "sktwi1k4tkslzvax6",
+        "comment": "This is a cool book baby",
+        "rate": "5",
+        "elementId": "sktwi1cr2ksk7rcm0",
+        "createdAt": "2021-08-21T16:27:04.073Z"
+      },
+      {
+        "_id": "sktwi1k4tkslzvpzg",
+        "comment": "Another review just for fun",
+        "rate": "5",
+        "elementId": "sktwi1cr2ksk7rcm0",
+        "createdAt": "2021-08-21T16:27:23.596Z"
+      }
+    ],
+    "updatedAt": "2021-08-20T14:37:49.717Z"
+  }
+]
