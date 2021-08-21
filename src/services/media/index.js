@@ -7,7 +7,7 @@ import { generatePdfStream } from "../../utilities/pdf.js";
 import { pipeline } from "stream";
 import createHttpError from "http-errors";
 import uniqid from 'uniqid'
-import multer from "multer";
+import multer from "multer"
 
 
 const mediaRouter = Router()
