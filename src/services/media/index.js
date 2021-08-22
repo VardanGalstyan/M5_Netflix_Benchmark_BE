@@ -178,17 +178,23 @@ mediaRouter.get("/:id/pdf", async (req, res, next) => {
     }
 });
 
-mediaRouter.get("/csv", async (req, res, next) => {
+mediaRouter.get("/:id/csv", async (req, res, next) => {
     try {
-        res.setHeader("Content-Disposition", "attachment; filename=mediaPost.pdf");
-        const source = readableStream()
-        const transform = new Transform({ fields: ["Title", "Year", "Type"] })
-        const destination = res;
-
-        pipeline(source, transform, destination, (err) => {
-            if (err) next(err);
-        });
-
+        const mediaPosts = await readMedia();
+        const mediaPost = mediaPosts.find(post => post.imdbID === req.params.id);
+        if(mediaPost){
+            const fileName = "test.csv"
+            res.setHeader("Content-Disposition", `attachment; filename=${fileName}`);
+            const source = readableStream()
+            const transform = new Transform({ fields: ["Title", "Year", "Type"] })
+            const destination = res;
+    
+            pipeline(source, transform, destination, err => {
+                if (err) next(err);
+            });
+        } else {
+            next(createHttpError(404, `Media post with ID #: ${req.params.id} cannot be found!`))
+        }
     } catch (error) {
         next(error);
     }
