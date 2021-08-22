@@ -1,5 +1,6 @@
 import express from 'express'
 import mediaRouter from './services/media/index.js'
+import userRouter from './services/users/index.js'
 import listEndpoints from 'express-list-endpoints'
 import { join } from 'path'
 import cors from 'cors'
@@ -26,6 +27,7 @@ server.use(cors(corsOption))
 server.use(express.json())
 
 server.use("/media", mediaRouter)
+server.use("/users", userRouter)
 
 console.table(listEndpoints(server))
 
