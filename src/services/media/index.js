@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { readMedia, writeMedia } from "../../utilities/fs-utilities.js";
+import { readableStream, readMedia, writeMedia } from "../../utilities/fs-utilities.js";
 import { mediaReviewValidator, mediaValidator } from "../../validation.js";
 import { validationResult } from "express-validator";
 import { generatePdfStream } from "../../utilities/pdf.js";
@@ -8,6 +8,7 @@ import createHttpError from "http-errors";
 import uniqid from 'uniqid'
 import multer from "multer"
 import { mediaStorage } from '../../utilities/fileupload.js'
+import { Transform } from "json2csv";
 
 
 const mediaRouter = Router()
@@ -172,6 +173,22 @@ mediaRouter.get("/:id/pdf", async (req, res, next) => {
                 createHttpError(404, `Blog post with the id: ${paramsID} not found.`)
             );
         }
+    } catch (error) {
+        next(error);
+    }
+});
+
+mediaRouter.get("/csv", async (req, res, next) => {
+    try {
+        res.setHeader("Content-Disposition", "attachment; filename=mediaPost.pdf");
+        const source = readableStream()
+        const transform = new Transform({ fields: ["Title", "Year", "Type"] })
+        const destination = res;
+
+        pipeline(source, transform, destination, (err) => {
+            if (err) next(err);
+        });
+
     } catch (error) {
         next(error);
     }

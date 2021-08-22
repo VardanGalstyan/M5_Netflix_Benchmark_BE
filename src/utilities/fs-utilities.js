@@ -10,3 +10,4 @@ export const pathToPublicImg = join(dirname(fileURLToPath(import.meta.url)), "..
 export const readMedia = () => readJSON(pathToJsonMedia)
 export const writeMedia = (content) => writeJSON(pathToJsonMedia, content)
 export const saveFile = (filename, content) => writeFile(join(pathToPublicImg, filename), content)
+export const readableStream = () => readableStream(pathToJsonMedia)
